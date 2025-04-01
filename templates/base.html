@@ -4,18 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }}</title>
-    <link rel="stylesheet" href="static/script.js">
-    <!-- https://flask.palletsprojects.com/en/stable/ -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- https://flask.palletsprojects.com/en/stable/tutorial/static/ -->
 </head>
 <body>
-    <h1>Lista de Tarefas</h1>
- 
-    <input type="text" id="tarefaInput" placeholder="Digite uma tarefa">
-    <input type="date" id="dataConclusao" placeholder="Selecione a data de conclusão">
-    <button id="adicionarTarefa">Adicionar</button>
- 
-    <ul id="listaTarefas"></ul>
- 
-    <script src="script.js"></script>
+    <h1>Agenda de Tarefas</h1>
+    {% block content %}{% endblock %}
 </body>
 </html>

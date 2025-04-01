@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+    {% block content %}
+        <form method="POST" action="{{ url_for('index') }}">
+            <input type="hidden" name="id_tarefa" value="{{ tarefa_edicao.id if tarefa_edicao else '' }}">
+            <input type="text" name="titulo" id="titulo" placeholder="Título da tarefa" 
+                   value="{{ tarefa_edicao.titulo if tarefa_edicao else '' }}" required>
+            <input type="date" name="data_conclusao" id="data_conclusao" 
+                   value="{{ tarefa_edicao.data_conclusao if tarefa_edicao else '' }}">
+            <button type="submit">
+                {{ 'Atualizar' if tarefa_edicao else 'Adicionar' }}
+            </button>
+            {% if tarefa_edicao %}
+                <a href="{{ url_for('index') }}">Cancelar</a>
+            {% endif %}
+        </form>
+
+        <ul>
+            {% for tarefa in tarefas %}
+                <li>
+                    {{ tarefa.titulo }} - {{ tarefa.data_conclusao }}
+                    <a href="{{ url_for('edit', id=tarefa.id) }}">Editar</a>
+                    <a href="{{ url_for('delete', id=tarefa.id) }}">Apagar</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endblock %}
